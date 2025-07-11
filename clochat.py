@@ -5,10 +5,11 @@
 # CloChat签到脚本
 # -------------------------------
 """
-CloChat签到脚本
+CloChat签到
 变量为账号密码
 export CLOCHAT_USERNAME="账号"
 export CLOCHAT_PASSWORD="密码"
+
 cron: 10 10 * * *
 const $ = new Env("clochat签到");
 """
