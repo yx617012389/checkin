@@ -1,11 +1,14 @@
 # -*- coding:utf-8 -*-
 # -------------------------------
 # @Author : github@wh1te3zzz https://github.com/wh1te3zzz/checkin
-# @Time : 2025-06-19 09:06:56
-# clochat签到脚本
+# @Time : 2025-07-11 14:06:56
+# CloChat签到脚本
 # -------------------------------
 """
+CloChat签到脚本
 变量为账号密码
+export CLOCHAT_USERNAME=
+export CLOCHAT_PASSWORD=
 cron: 10 10 * * *
 const $ = new Env("clochat签到");
 """
