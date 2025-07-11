@@ -1,4 +1,14 @@
-# -*- coding: utf-8 -*-
+# -*- coding:utf-8 -*-
+# -------------------------------
+# @Author : github@wh1te3zzz https://github.com/wh1te3zzz/checkin
+# @Time : 2025-06-19 09:06:56
+# clochat签到脚本
+# -------------------------------
+"""
+变量为账号密码
+cron: 10 10 * * *
+const $ = new Env("clochat签到");
+"""
 import os
 import time
 import traceback
