@@ -2,7 +2,7 @@
 # -------------------------------
 # @Author : github@wh1te3zzz https://github.com/wh1te3zzz/checkin
 # @Time : 2025-06-19 09:06:56
-# NodeLoc签到脚本
+# 顺丰速运任务脚本
 # -------------------------------
 """
 顺丰任务
