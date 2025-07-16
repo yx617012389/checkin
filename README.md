@@ -21,7 +21,7 @@ selenium 自动化 python 脚本必须先安装 chromium 及 chromium-chromedriv
 
 ## NodeSeek
 
-适用于 NodeSeek 论坛，包含签到、评论和加鸡腿功能。使用 Selenium 和 undetected-chromedriver 实现自动化操作。强烈建议修改随机词。否则容易被举报被禁言。
+适用于 NodeSeek 论坛，包含签到、评论和加鸡腿功能。强烈建议修改随机词。否则容易被举报被禁言。
 
 ### 功能特点
 
