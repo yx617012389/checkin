@@ -26,7 +26,7 @@ selenium 自动化 python 脚本必须先安装 chromium 及 chromium-chromedriv
 ~~强烈建议修改随机词，慎用ai评论功能。否则容易被举报被禁言~~。
 为了论坛健康发展，已删除部分功能。
 
-### 环境变量配置
+### 环境变量
 
 - `NS_COOKIE`: NodeSeek 的 Cookie（必需）
 - `NS_RANDOM`: 是否随机选择奖励，true/false（可选）
