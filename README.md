@@ -2,13 +2,21 @@
 
 自用脚本，请勿传播。适用于多种app与论坛，解放双手自动化。适配青龙面板。
 
+## CloChat
+
+适用于 CloChat 论坛，包含签到功能。
+
+### 环境变量
+- `CLOCHAT_USERNAME`: CloChat 的用户名（必需）
+- `CLOCHAT_PASSWORD`: CloChat 的密码（必需）
+
 ## Nodeloc
 
 适用于 Nodeloc 论坛，包含签到功能。
 增加任务脚本，已实现自动点击话题及点赞功能。
 
 ### 环境变量
-- `NLCookie`: NodeLoc 的 Cookie（必需）
+- `NL_COOKIE`: NodeLoc 的 Cookie（必需）
 
 ## NodeSeek
 
