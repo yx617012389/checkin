@@ -5,6 +5,7 @@
 ## Nodeloc
 
 适用于 Nodeloc 论坛，包含签到功能。
+增加任务脚本，已实现自动点击话题及点赞功能。
 
 ### 环境变量
 - `NLCookie`: NodeLoc 的 Cookie（必需）
