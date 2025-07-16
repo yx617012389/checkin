@@ -102,7 +102,12 @@ def setup_driver_and_cookies():
             options.add_argument('--window-size=1920,1080')
             options.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
         
-        driver = uc.Chrome(options=options)
+        #driver = uc.Chrome(options=options)
+        driver = uc.Chrome(
+            options=options,
+            driver_executable_path='/usr/bin/chromedriver',
+            version_main=138
+        )
         
         if headless:
             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
