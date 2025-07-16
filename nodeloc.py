@@ -7,7 +7,7 @@
 """
 NodeLoc签到
 自行网页捉包提取请求头中的cookie和x-csrf-token填到变量 NLCookie 中,用#号拼接，多账号换行隔开
-export NLCookie="_t=******; _forum_session=xxxxxx#XXXXXX"
+export NL_COOKIE="_t=******; _forum_session=xxxxxx#XXXXXX"
 
 cron: 59 8 * * *
 const $ = new Env("NodeLoc签到");
@@ -19,8 +19,8 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, wait
 
 # 分割变量：解析 NLCookie 环境变量
-if 'NLCookie' in os.environ:
-    lines = os.environ.get("NLCookie").strip().split("\n")
+if 'NL_COOKIE' in os.environ:
+    lines = os.environ.get("NL_COOKIE").strip().split("\n")
     NLCookie = []
     for line in lines:
         parts = line.strip().split("#", 1)  # 最多分割一次
