@@ -31,7 +31,6 @@ selenium 自动化 python 脚本必须先安装 chromium 及 chromium-chromedriv
 - `NS_COOKIE`: NodeSeek 的 Cookie（必需）
 - `NS_RANDOM`: 是否随机选择奖励，true/false（可选）
 - `HEADLESS`: 是否使用无头模式，true/false（可选，默认 true）
-- `randomInputStr`: 评论内容
 
 ## sfsy
 
