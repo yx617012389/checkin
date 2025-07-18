@@ -1,6 +1,6 @@
 # 自用签到脚本
 
-自用脚本，请勿传播。适用于多种 app 与论坛，解放双手自动化。适配青龙面板。
+自用脚本，请勿传播。适用于多种 app 与论坛，解放双手自动化。适配青龙面板。适配青龙notify通知。
 selenium 自动化 python 脚本必须先安装 chromium 及 chromium-chromedriver。
 
 ## CloChat
@@ -31,6 +31,14 @@ selenium 自动化 python 脚本必须先安装 chromium 及 chromium-chromedriv
 - `NS_COOKIE`: NodeSeek 的 Cookie（必需）
 - `NS_RANDOM`: 是否随机选择奖励，true/false（可选）
 - `HEADLESS`: 是否使用无头模式，true/false（可选，默认 true）
+
+## ArcticCloud
+
+适用于 ArcticCloud，包含自动续期功能。
+
+### 环境变量
+- `ARCTIC_USERNAME`: ARCTIC 的用户名（必需）
+- `ARCTIC_PASSWORD`: ARCTIC 的密码（必需）
 
 ## sfsy
 
