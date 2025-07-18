@@ -13,9 +13,12 @@ export CLOCHAT_PASSWORD="密码"
 cron: 10 10 * * *
 const $ = new Env("clochat签到");
 """
+# -*- coding: utf-8 -*-
 import os
 import time
 import traceback
+import logging
+from notify import send
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -26,6 +29,13 @@ from selenium.webdriver.chrome.options import Options
 USERNAME = os.environ.get("CLOCHAT_USERNAME")
 PASSWORD = os.environ.get("CLOCHAT_PASSWORD")
 HEADLESS = os.environ.get("HEADLESS", "true").lower() == "true"
+LOG_LEVEL = os.environ.get("CLOCHAT_LOG_LEVEL", "INFO").upper()
+
+# 配置日志
+logging.basicConfig(
+    level=getattr(logging, LOG_LEVEL, logging.INFO),
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 def setup_driver():
     """初始化浏览器"""
@@ -51,10 +61,10 @@ def setup_driver():
 def login(driver):
     """使用账号密码登录"""
     if not USERNAME or not PASSWORD:
-        print("未找到CLOCHAT_USERNAME或CLOCHAT_PASSWORD环境变量")
+        logging.error("未找到CLOCHAT_USERNAME或CLOCHAT_PASSWORD环境变量")
         return False
 
-    print("跳转至登录页面...")
+    logging.debug("跳转至登录页面...")
     driver.get('https://clochat.com/login')
 
     try:
@@ -81,13 +91,13 @@ def login(driver):
             EC.url_contains("login")
         )
 
-        print("登录成功！")
+        logging.info("登录成功！")
 
         return True
 
     except Exception as e:
-        print(f"登录过程中出错: {str(e)}")
-        print(f"当前页面源码片段: {driver.page_source[:1000]}...")
+        logging.error(f"登录过程中出错: {str(e)}")
+        logging.debug(f"当前页面源码片段: {driver.page_source[:1000]}...")
         return False
 
 def send_sign_in_message_in_chat(driver):
@@ -95,29 +105,29 @@ def send_sign_in_message_in_chat(driver):
     CHAT_URL = "https://clochat.com/chat/c/-/2"  # 替换为你实际的聊天室链接
 
     try:
-        print(f"跳转至聊天室: {CHAT_URL}")
+        logging.debug(f"跳转至聊天室: {CHAT_URL}")
         driver.get(CHAT_URL)
         time.sleep(5)
 
-        print("等待输入框加载...")
+        logging.debug("等待输入框加载...")
         input_box = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.ID, "channel-composer"))
         )
 
-        print("清空输入框...")
+        logging.debug("清空输入框...")
         input_box.clear()
 
-        print("输入'签到'")
+        logging.debug("输入'签到'")
         input_box.send_keys("签到")
 
-        print("等待发送按钮可用...")
+        logging.debug("等待发送按钮可用...")
         send_button = WebDriverWait(driver, 30).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".chat-composer-button.-send"))
         )
 
-        print("点击发送按钮...")
+        logging.debug("点击发送按钮...")
         send_button.click()
-        print("✅ 签到消息已发送！")
+        logging.info("✅ 签到消息已发送！")
 
         # 检查是否有机器人回复
         time.sleep(5)
@@ -126,36 +136,30 @@ def send_sign_in_message_in_chat(driver):
             last_message = messages[-1]
             chat_content = last_message.find_element(By.CSS_SELECTOR, ".chat-cooked p").text.strip()
 
-            print(f"🔍 签到结果: {chat_content}")
-
-            #if "签到成功" in chat_content:
-            #    print("🎉 签到成功！今日首次签到。")
-            #elif "请勿重复签到" in chat_content:
-            #    print("ℹ️ 已经签过到了，请勿重复操作。")
-            #else:
-            #    print("⚠️ 未知响应，可能页面结构变动或签到失败。")
+            logging.info(f"🔍 签到结果: {chat_content}")
+            send(title="CloChat 签到", content=chat_content)
         else:
-            print("❌ 未检测到任何消息，请检查网络或页面是否加载完成。")
+            logging.warning("❌ 未检测到任何消息，请检查网络或页面是否加载完成。")
 
     except Exception as e:
-        print(f"聊天室签到失败: {e}")
-        print(traceback.format_exc())
+        logging.error(f"聊天室签到失败: {e}")
+        logging.debug(traceback.format_exc())
         #driver.save_screenshot(f"/ql/data/photo/chat_error_{int(time.time())}.png")
 
 if __name__ == "__main__":
     driver = None
     try:
-        print("开始执行CloChat签到脚本...")
+        logging.info("开始执行CloChat签到脚本...")
         driver = setup_driver()
 
         if login(driver):
-            print("开始执行聊天室签到流程...")
+            logging.debug("开始执行聊天室签到流程...")
             send_sign_in_message_in_chat(driver)
         else:
-            print("登录失败，无法继续签到。")
+            logging.error("登录失败，无法继续签到。")
 
     finally:
         if driver:
-            print("关闭浏览器...")
+            logging.info("关闭浏览器...")
             driver.quit()
-        print("脚本执行完成")
+        logging.info("脚本执行完成")
