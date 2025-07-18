@@ -6,7 +6,7 @@
 # -------------------------------
 """
 ArcticCloud 免费vps自动续期
-用户名密码填写到对应变量，暂不支持多账户
+变量为账号密码，暂不支持多账户
 export USERNAME = "ARCTIC账号"
 export PASSWORD = "ARCTIC密码"
 
