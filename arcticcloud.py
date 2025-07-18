@@ -7,8 +7,8 @@
 """
 ArcticCloud 免费vps自动续期
 变量为账号密码，暂不支持多账户
-export USERNAME = "ARCTIC账号"
-export PASSWORD = "ARCTIC密码"
+export ARCTIC_USERNAME = "ARCTIC账号"
+export ARCTIC_PASSWORD = "ARCTIC密码"
 
 cron: 0 12 * * *
 const $ = new Env("ArcticCloud续期");
