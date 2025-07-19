@@ -27,7 +27,7 @@ from selenium.webdriver.chrome.options import Options
 import undetected_chromedriver as uc
 
 # ========== 环境变量 ==========
-COOKIE = os.environ.get("NS_COOKIE2")
+COOKIE = os.environ.get("NS_COOKIE")
 SIGN_MODE = os.environ.get("NS_SIGN_MODE", "chicken")  # 签到模式 chicken / lucky
 ENABLE_SCREENSHOT = os.environ.get("NS_ENABLE_SCREENSHOT", "false").lower() == "true"  # 是否启用截图
 HEADLESS = os.environ.get("NS_HEADLESS", "true").lower() == "true"  # 是否启用无头模式
