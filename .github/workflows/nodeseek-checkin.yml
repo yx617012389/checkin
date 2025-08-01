@@ -1,0 +1,40 @@
+name: NodeSeek 自动签到
+
+on:
+  schedule:
+    - cron: '30 8 * * *'   # 北京时间 16:30（UTC 8:30）
+  workflow_dispatch:       # 支持手动触发
+
+jobs:
+  nodeseek-checkin:
+    name: 执行 NodeSeek 签到
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🐍 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: ⬇️ 安装依赖
+        run: |
+          pip install -r requirements.txt
+
+      - name: 🚀 运行签到脚本
+        env:
+          NS_COOKIE: ${{ secrets.NS_COOKIE }}
+          NS_SIGN_MODE: ${{ secrets.NS_SIGN_MODE || 'chicken' }}
+          NS_HEADLESS: ${{ secrets.NS_HEADLESS || 'true' }}
+          NS_LOG_LEVEL: ${{ secrets.NS_LOG_LEVEL || 'INFO' }}
+          PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+          PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          WXPUSHER_APP_TOKEN: ${{ secrets.WXPUSHER_APP_TOKEN }}
+        run: |
+          python nodeseek.py
