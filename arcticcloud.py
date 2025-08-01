@@ -28,7 +28,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 # =================== 配置开关 ===================
 WAIT_TIMEOUT = 60         # 等待超时时间
-ENABLE_SCREENSHOT = True  # 是否开启截图功能
+ENABLE_SCREENSHOT = False  # 是否开启截图功能
 HEADLESS = os.environ.get("HEADLESS", "true").lower() == "true"  # 配置无头模式
 LOG_LEVEL = os.environ.get("ARCTIC_LOG_LEVEL", "INFO").upper()   # 配置日志级别
 # =================================================
