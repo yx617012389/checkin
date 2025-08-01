@@ -1,0 +1,42 @@
+name: NodeLoc 自动签到
+
+on:
+  schedule:
+    # 每天 08:00 UTC 运行（即北京时间 16:00）
+    - cron: '0 8 * * *'
+  workflow_dispatch:  # 允许手动触发
+    inputs:
+      debug:
+        description: '是否开启调试模式'
+        required: false
+        default: 'false'
+
+jobs:
+  checkin:
+    name: 执行签到
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🐍 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: ⬇️ 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          # 如果有 requirements.txt 可以启用下面这行
+          # pip install -r requirements.txt
+
+      - name: 🏃 运行签到脚本
+        env:
+          NL_COOKIE: ${{ secrets.NL_COOKIE }}  # 从 GitHub Secrets 读取
+        run: |
+          python nodeloc_checkin.py
+
+      - name: 📝 输出完成日志
+        run: |
+          echo "✅ 签到任务已完成，查看上方日志获取结果。"
