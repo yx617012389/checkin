@@ -1,0 +1,38 @@
+name: 顺丰速运自动签到
+
+on:
+  schedule:
+    - cron: '15 8,16 * * *'
+  workflow_dispatch:
+
+jobs:
+  renew_vps:
+    name: 执行自动签到
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🐍 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: ⬇️ 安装依赖
+        run: |
+          pip install -r requirements.txt
+
+      - name: 🚀 运行签到脚本
+        env:
+          sfsyUrl: ${{ secrets.sfsyUrl }}
+          PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+          PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          WXPUSHER_APP_TOKEN: ${{ secrets.WXPUSHER_APP_TOKEN }}
+          
+        run: |
+          python sfsy.py
