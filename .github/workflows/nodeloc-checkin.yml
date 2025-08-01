@@ -35,7 +35,7 @@ jobs:
         env:
           NL_COOKIE: ${{ secrets.NL_COOKIE }}  # 从 GitHub Secrets 读取
         run: |
-          python nodeloc_checkin.py
+          python nodeloc.py
 
       - name: 📝 输出完成日志
         run: |
