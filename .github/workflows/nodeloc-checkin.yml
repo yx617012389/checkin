@@ -33,7 +33,14 @@ jobs:
 
       - name: 🏃 运行签到脚本
         env:
-          NL_COOKIE: ${{ secrets.NL_COOKIE }}  # 从 GitHub Secrets 读取
+          NL_COOKIE: ${{ secrets.NL_COOKIE }}
+          PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+          PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          WXPUSHER_APP_TOKEN: ${{ secrets.WXPUSHER_APP_TOKEN }}
         run: |
           python nodeloc.py
 
