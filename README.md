@@ -1,6 +1,6 @@
 # 自用签到脚本
 
-自用脚本，请勿传播。适用于多种 app 与论坛，解放双手自动化。适配青龙面板。适配青龙notify通知。
+自用脚本，请勿传播。适用于多种 app 与论坛，解放双手自动化。适配青龙面板。适配青龙notify通知。已适配GitHub Actions。
 selenium 自动化 python 脚本必须先安装 chromium 及 chromium-chromedriver。
 
 ## CloChat
