@@ -2,7 +2,7 @@ name: CloChat 自动签到
 
 on:
   schedule:
-    - cron: '10 10 * * *'  # 每天 10:10 UTC（北京时间 18:10）
+    - cron: '0 15 * * *'  # 每天 10:10 UTC（北京时间 18:10）
   workflow_dispatch:  # 支持手动运行
 
 jobs:
